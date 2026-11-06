@@ -10,6 +10,7 @@ describe('App Smoke and Tab Navigation', () => {
     expect(screen.getByText(/Current Day/i)).toBeInTheDocument();
     expect(screen.getByText(/Last 7 Days/i)).toBeInTheDocument();
     expect(screen.getByText(/Last Quarter/i)).toBeInTheDocument();
+    expect(screen.getByText(/Company Search/i)).toBeInTheDocument();
 
     // Wait for mock data to resolve
     await waitFor(() => {
@@ -27,6 +28,10 @@ describe('App Smoke and Tab Navigation', () => {
     const quarterTab = screen.getByRole('tab', { name: /Last Quarter/i });
     fireEvent.click(quarterTab);
     expect(quarterTab).toHaveClass('active');
+
+    const customTab = screen.getByRole('tab', { name: /Company Search/i });
+    fireEvent.click(customTab);
+    expect(customTab).toHaveClass('active');
   });
 });
 
