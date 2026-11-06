@@ -3,10 +3,16 @@ import { TIME_WINDOWS } from '../constants/config';
 import { CurrentDayView } from './CurrentDayView';
 import { SevenDayView } from './SevenDayView';
 import { QuarterView } from './QuarterView';
+import { CustomCompanyView } from './CustomCompanyView';
 import { LoadingSkeleton } from '../components/common/LoadingSkeleton';
 
 export const DashboardView = ({ activeTab, dataState }) => {
   const { quotes, historicalData, companies, loading, error, refresh } = dataState;
+
+  // CustomCompanyView manages its own independent dynamic search state
+  if (activeTab === TIME_WINDOWS.CUSTOM) {
+    return <CustomCompanyView />;
+  }
 
   if (loading) {
     return <LoadingSkeleton count={5} />;
